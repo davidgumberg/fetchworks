@@ -2,7 +2,6 @@
 
 require_relative "fetchworks/version"
 
-require "pathname"
 require "json"
 require "open-uri"
 
@@ -39,8 +38,9 @@ module OpenLibrary
   end
 
   def self.get_author(url)
+    url = url[%r{\A.*(?=/)}] + '.json'
     uri = URI.parse(url)
-    uri.path = Pathname.new(uri.path).parent.to_s + '.json'
+    p uri
     JSON.parse(uri.open.read)
   end
 end
@@ -58,6 +58,7 @@ class OpenLibraryBook
 
   def authors_details
     authors.collect do |author|
+      p author["url"]
       OpenLibrary.get_author(author["url"])
     end
   end
