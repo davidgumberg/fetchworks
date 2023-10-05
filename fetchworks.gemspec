@@ -8,8 +8,10 @@ Gem::Specification.new do |spec|
   spec.authors = ["David Gumberg"]
   spec.email = ["davidzgumberg@gmail.com"]
 
-  spec.summary = "A simple gem for programmatic access of works data."
-  # spec.description = "TODO: Write a longer description or delete this line."
+  spec.summary = "A simple gem for programmatic access of data about written works."
+  spec.description = "A simple gem for programmatic access of data about written works.
+                      At present, it has support for the OpenLibrary API"
+
   spec.homepage = "https://github.com/davidgumberg/fetchworks"
   spec.required_ruby_version = ">= 2.6.0"
 
@@ -30,8 +32,12 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  # Uncomment to register a new dependency of your gem
   spec.add_dependency "open-uri"
+
+  spec.add_development_dependency "debug"
+  spec.add_development_dependency "rake", "~> 13.0"
+  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "standard", "~> 1.3"
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
