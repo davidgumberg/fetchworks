@@ -22,7 +22,6 @@ QUERY_POSTFIX = "&jscmd=data&format=json"
 
 module HashMethodable
   # Expose hash members as methods
-  # 
   def method_missing(method_name, *_args, &_block)
     key = method_name&.to_s
     @data&.key?(key) ? @data[key] : nil
@@ -129,6 +128,8 @@ module OpenLibrary
           [split[2].to_i,
            Date::MONTHNAMES.index(split[1]),
            split[0].to_i]
+        else
+          raise OLDateStrUnparseable
         end
       end
     )
