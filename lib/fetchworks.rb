@@ -79,7 +79,7 @@ module OpenLibrary
   # or three elements are present. We decide which one based off
   # of which member is a recognized month name.
   def self.partial_date_from_str(str)
-    return [] unless str.is_a?(String) && !str.empty?
+    return nil unless str.is_a?(String) && !str.empty?
 
     # Replace commas with spaces and part out the date string
     split = str.tr(",", " ").split
