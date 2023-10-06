@@ -18,17 +18,20 @@ QUERY_POSTFIX = "&jscmd=data&format=json"
 
 # Mixin Module for classes with a hash attribute @data
 # That routes classinstance.method to classinstance.data[:method]
+# TODO: infect nested hashes and arrays with this module.
+
 module HashMethodable
   # Expose hash members as methods
+  # 
   def method_missing(method_name, *_args, &_block)
-    key = method_name.to_s
-    @data.key?(key) ? @data[key] : nil
+    key = method_name&.to_s
+    @data&.key?(key) ? @data[key] : nil
   end
 
   # Advertise hash member methods
   def respond_to_missing?(method_name, include_private = false)
-    key = method_name.to_s
-    @data.key?(key) || super
+    key = method_name&.to_s
+    @data&.key?(key) || super
   end
 end
 
