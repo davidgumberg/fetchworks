@@ -186,7 +186,7 @@ class OpenLibraryBook < OpenLibraryEntry
     OpenLibrary.partial_date_from_str(str)
   end
 
-  def authors_details
+  def fetch_authors
     authors.collect do |author|
       OpenLibraryAuthor.new author["url"]
     end
