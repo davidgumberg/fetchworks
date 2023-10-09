@@ -105,8 +105,8 @@ DEPENDENCIES
   fetchworks!
   rake (~> 13.0)
   rspec (~> 3.0)
-  rubocop (~> 1.56)
-  rubocop-rspec (~> 2.24)
+  rubocop
+  rubocop-rspec
   standard (~> 1.3)
 
 BUNDLED WITH
