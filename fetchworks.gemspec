@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
                       At present, it has support for the OpenLibrary API"
 
   spec.homepage = "https://github.com/davidgumberg/fetchworks"
-  spec.required_ruby_version = ">= 2.6.0"
+  spec.required_ruby_version = ">= 3.0"
   spec.license = "MIT"
 
   spec.metadata["homepage_uri"] = spec.homepage
