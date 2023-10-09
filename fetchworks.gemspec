@@ -35,11 +35,11 @@ Gem::Specification.new do |spec|
   spec.add_dependency "open-uri"
 
   spec.add_development_dependency "debug"
-  spec.add_development_dependency "rake", "~> 13.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
-  spec.add_development_dependency "rubocop", "~> 1.56"
-  spec.add_development_dependency "rubocop-rspec", "~> 2.24"
-  spec.add_development_dependency "standard", "~> 1.3"
+  spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec"
+  spec.add_development_dependency "rubocop"
+  spec.add_development_dependency "rubocop-rspec"
+  spec.add_development_dependency "standard"
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
