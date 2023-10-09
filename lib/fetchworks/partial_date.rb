@@ -18,6 +18,10 @@ class PartialDate
     date.to_time
   end
 
+  def <=>(other)
+    date <=> other.date
+  end
+
   def ==(other)
     self.class == other.class &&
       @year == other.year &&

@@ -162,4 +162,29 @@ RSpec.describe PartialDate do
       expect(partial.date).to eq(Date.new(array[0], array[1], array[2]))
     end
   end
+
+  context "when comparing" do
+    let(:dates) {
+      [described_class.new([-1500, 1, 2]), # Earliest Date
+       described_class.new([-100, 10, 9]), # Middle date
+       described_class.new([-100, 10, 9]), # Date equal to middle date
+       described_class.new([1991, 6, 5])]  # Latest date
+    }
+
+    it "implements the spaceship operator" do
+      expect(described_class.method_defined?(:<=>)).to be true
+    end
+
+    it "says a smaller date is smaller" do
+      expect(dates[0] <=> dates[1]).to eq(-1)
+    end
+
+    it "says a bigger date is bigger" do
+      expect(dates[3] <=> dates[1]).to eq(1)
+    end
+
+    it "says equal dates are equal" do
+      expect(dates[1] <=> dates[2]).to eq(0)
+    end
+  end
 end
