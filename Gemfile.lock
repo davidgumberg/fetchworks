@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fetchworks (0.1.0)
+    fetchworks (0.1.1)
       open-uri
 
 GEM
