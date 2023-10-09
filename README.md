@@ -14,7 +14,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-```
+```ruby
 donquixote = OpenLibraryBook.new("9780062391667")
 
 # OpenLibraryBook.data returns a hash of all the JSON data returned by OL
@@ -43,7 +43,7 @@ Given the partial nature of historical dates (oftentimes a year is known but a
 month or day isn't), we provide a class `PartialDate` to represent dates that
 are accessed via method names:
 
-```
+```ruby
 cervantes.birth_date # => #<PartialDate:0x01 @day=29, @month=9, @year=1547>
 cervantes.birth_date.year # => 1547
 
@@ -54,7 +54,7 @@ donquixote.publish_date.day # => 16
 If you still want to access the original string format of a date that
 OpenLibrary provides, you can through the `@data` hash.
 
-```
+```ruby
 cervantes.data["birth_date"] # => "29 Sep 1547"
 ```
 
@@ -63,7 +63,7 @@ work as expected when a value is present, and return `nil` when one isn't. We al
 convenience methods `#to_date` and `#to_time` which will return a ruby builtin `Date` or `Time`
 object with the smallest possible values for the unknown attributes of the date.
 
-```
+```ruby
 herodotus.birth_date # => #<PartialDate:0x01 @day=nil, @month=nil, @year=-484>
 herodotus.birth_date.month # => nil
 herodotus.birth_date.day # => nil
