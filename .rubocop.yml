@@ -1,0 +1,19 @@
+require:
+  - standard
+  - rubocop-rspec
+
+inherit_gem:
+  standard: config/base.yml
+
+Layout/EmptyLineBetweenDefs:
+  AllowAdjacentOneLineDefs: true
+
+Layout/ArrayAlignment:
+  EnforcedStyle: with_first_element
+
+RSpec/MultipleDescribes:
+  Enabled: false
+
+AllCops:
+  NewCops: enable
+

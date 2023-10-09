@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'time'
+require "time"
 
 # Date representation that permits nil values
 # We need this because of the nature of date values for works
@@ -20,7 +20,7 @@ class PartialDate
 
   def ==(other)
     self.class == other.class &&
-      @year == other.year   &&
+      @year == other.year &&
       @month == other.month &&
       @day == other.day
   end
