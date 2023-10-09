@@ -75,7 +75,7 @@ RSpec.describe PartialDate do
     end
 
     it "has the right date" do
-      expect(described_class.new(time).date).to eq(time.to_date)
+      expect(described_class.new(time).to_date).to eq(time.to_date)
     end
   end
 
@@ -94,9 +94,9 @@ RSpec.describe PartialDate do
       expect(described_class.new(date).day).to eq(date.day)
     end
 
-    it "has the right date" do
+    it "converts to the right date" do
       # Need to .to_time.to_date in order to drop the seconds and nanoseconds from date
-      expect(described_class.new(date).date).to eq(date.to_time.to_date)
+      expect(described_class.new(date).to_date).to eq(date.to_time.to_date)
     end
   end
 
@@ -116,8 +116,8 @@ RSpec.describe PartialDate do
       expect(partial.day).to be_nil
     end
 
-    it "has a date with 1's instead of nils" do
-      expect(partial.date).to eq(Date.new(array[0], 1, 1))
+    it "converts to a date with 1's instead of nils" do
+      expect(partial.to_date).to eq(Date.new(array[0], 1, 1))
     end
   end
 
@@ -137,8 +137,8 @@ RSpec.describe PartialDate do
       expect(partial.day).to be_nil
     end
 
-    it "has a date with 1's instead of nils" do
-      expect(partial.date).to eq(Date.new(array[0], array[1], 1))
+    it "converts to a date with 1's instead of nils" do
+      expect(partial.to_date).to eq(Date.new(array[0], array[1], 1))
     end
   end
 
@@ -158,8 +158,8 @@ RSpec.describe PartialDate do
       expect(partial.day).to eq(array[2])
     end
 
-    it "has a date the same as Date.new" do
-      expect(partial.date).to eq(Date.new(array[0], array[1], array[2]))
+    it "converts to a date the same as Date.new" do
+      expect(partial.to_date).to eq(Date.new(array[0], array[1], array[2]))
     end
   end
 
