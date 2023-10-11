@@ -72,16 +72,16 @@ object with the smallest possible values for the unknown attributes of the date.
 
 ```ruby
 # The unparsed OpenLibrary date string:
-herodotus["birth_date"] # =>
-herodotus.birth_date # => #<PartialDate:0x01 @day=nil, @month=nil, @year=-484>
-herodotus.birth_date.month # => nil
-herodotus.birth_date.day # => nil
+chaucer["birth_date"] # => "1343"
+chaucer.birth_date # => #<PartialDate:0x01 @day=nil, @month=nil, @year=1343>
+chaucer.birth_date.month # => nil
+chaucer.birth_date.day # => nil
 
-ruby_date = herodotus.birth_date.to_date # => #<Date:...>
+ruby_date = chaucer.birth_date.to_date # => #<Date:...>
 ruby_date.month # => 1
 ruby_date.day # => 1
 
-ruby_time = herodotus.birth_date.to_time # => #<Time:...>
+ruby_time = chaucer.birth_date.to_time # => #<Time:...>
 ruby_time.hour => 0
 ruby_time.sec => 0
 ```
