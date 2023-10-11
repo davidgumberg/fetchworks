@@ -45,10 +45,18 @@ module OpenLibrary
   class OLDateStrUnparseable < OpenLibraryError; end
 
   def self.get_book(isbn)
-    raise InvalidISBN unless isbn.is_a?(Integer) || isbn.is_a?(String)
+    unless isbn.is_a?(Integer) || isbn.is_a?(String)
+      raise InvalidISBN, "ISBN must be a string (or integer)"
+    end
 
     # Strip whitespace and hyphens
     isbn = isbn.to_s.strip.delete("-")
+
+    # Catch incorrect length ISBN's early
+    unless isbn.length == 10 || isbn.length == 13
+      raise InvalidISBN, "An ISBN must be either 10 or 13 digits long"
+    end
+
     raise InvalidISBN unless Petrarca.valid?(isbn)
 
     query = "bibkeys=ISBN:#{isbn}#{QUERY_POSTFIX}"

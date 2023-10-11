@@ -15,33 +15,40 @@ If bundler is not being used to manage dependencies, install the gem by executin
 ## Usage
 
 ```ruby
+# Works are fetched by initializing them with an ISBN
 donquixote = OpenLibraryBook.new("9780062391667")
 
-# OpenLibraryBook.data returns a hash of all the JSON data returned by OL
+# OpenLibraryBook.data returns a hash of the OpenLibrary JSON reply
 donquixote.data 
 # => { "title": "Don Quixote Deluxe Edition", "number_of_pages": "992" [...] }
-donquixote.data["title"] # => "Don Quixote Deluxe Edition"
 
-# Use the author id's contained in a work, to request entries for the authors of a work
-authors = donquixote.fetch_authors # => [#<OpenLibraryAuthor:0x01 @data={...}>, #<OpenLibraryAuthor:0x02 @data={...}> ...]
+donquixote.data["title"]
+# => "Don Quixote Deluxe Edition"
 
-cervantes = authors[0] # => #<OpenLibraryAuthor:0x01>
+# With one method, fetch JSON entries for all the author id's attached to a work
+authors = donquixote.fetch_authors
+# => [#<OpenLibraryAuthor:0x01 @data={...}>, #<OpenLibraryAuthor:0x02 @data={...}> ...]
+
+cervantes = authors[0]
+# => #<OpenLibraryAuthor:0x01>
+
 cervantes.data
 # => { "personal_name"=>"Miguel de Cervantes Saavedra",
 #      "birth_date"=>"29 Sep 1547" ... }
+
 cervantes.data["personal_name"]
+# => "Miguel de Cervantes Saavedra"
 
 # JSON data for OpenLibraryBook and OpenLibraryAuthor can be accessed with methods:
 donquixote.number_of_pages # => "992"
 cervantes.bio # => "Miguel de Cervantes Saavedra was a Spanish novelist, poet, [...]"
-
 ```
 
 ### Dates
 
 Given the partial nature of historical dates (oftentimes a year is known but a
-month or day isn't), we provide a class `PartialDate` to represent dates that
-are accessed via method names:
+month or day isn't), we provide a class `PartialDate` to represent dates returned 
+by methods
 
 ```ruby
 cervantes.birth_date # => #<PartialDate:0x01 @day=29, @month=9, @year=1547>
@@ -64,6 +71,8 @@ convenience methods `#to_date` and `#to_time` which will return a ruby builtin `
 object with the smallest possible values for the unknown attributes of the date.
 
 ```ruby
+# The unparsed OpenLibrary date string:
+herodotus["birth_date"] # =>
 herodotus.birth_date # => #<PartialDate:0x01 @day=nil, @month=nil, @year=-484>
 herodotus.birth_date.month # => nil
 herodotus.birth_date.day # => nil
