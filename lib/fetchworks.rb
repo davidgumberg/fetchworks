@@ -9,8 +9,9 @@ require_relative "fetchworks/version"
 require_relative "fetchworks/partial_date"
 
 require "json"
-require "open-uri"
 require "time"
+require "open-uri"
+require "petrarca"
 
 HOST = "openlibrary.org"
 PATH = "/api/books"
@@ -46,12 +47,9 @@ module OpenLibrary
   def self.get_book(isbn)
     raise InvalidISBN unless isbn.is_a?(Integer) || isbn.is_a?(String)
 
-    isbn = isbn.to_s if isbn.is_a? Integer
-    isbn = isbn.strip
-
-    # Primitive ISBN check: regex match for a 10 or 12 digit number
-    # TODO: check prefix and checksum
-    raise InvalidISBN unless /\A\d{10}(\d{3})?\z/.match? isbn
+    # Strip whitespace and hyphens
+    isbn = isbn.to_s.strip.delete("-")
+    raise InvalidISBN unless Petrarca.valid?(isbn)
 
     query = "bibkeys=ISBN:#{isbn}#{QUERY_POSTFIX}"
     uri = URI::HTTPS.build(host: HOST, path: PATH, query: query)
