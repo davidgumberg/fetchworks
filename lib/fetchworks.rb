@@ -67,7 +67,10 @@ module OpenLibrary
       raise OLBadStatus, response&.status
     end
 
-    JSON.parse(response.read).values.first
+    response_body = response&.read
+    raise OLResourceNotFound unless response_body != "{}"
+
+    JSON.parse(response_body).values.first
   end
 
   def self.get_author(url)
